@@ -21,7 +21,8 @@ class MainActivity : ComponentActivity() {
         Surface(
           modifier = Modifier
             .height(50.dp)
-            .width(250.dp), color = MaterialTheme.colors.background
+            .width(250.dp),
+          color = MaterialTheme.colors.background
         ) {
           AudioWaveView(
             waveBars = buildList {
@@ -31,7 +32,6 @@ class MainActivity : ComponentActivity() {
             }, modifier = Modifier
               .height(50.dp)
               .width(200.dp),
-            progress = 50
           )
         }
       }
