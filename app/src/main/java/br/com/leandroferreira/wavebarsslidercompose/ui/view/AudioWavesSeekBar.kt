@@ -25,9 +25,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.leandroferreira.wavebarsslidercompose.ui.theme.WaveBarsSliderComposeTheme
 import java.lang.Float.max
+import java.lang.Float.min
 
 private const val DEFAULT_TRACKER_HEIGHT_DP = 60
-private const val DEFAULT_TRACKER_WIDTH_DP = 20
+private const val DEFAULT_TRACKER_WIDTH_DP = 8
 
 @Composable
 fun AudioWaveView(
@@ -66,7 +67,7 @@ fun AudioWaveView(
       val top = (size.height - barHeight) / 2
       val bottom = top + barHeight
 
-      val color = if (progressToWidth > left + barWidth / 2) colorLeft else colorRight
+      val color = if (progressToWidth > left) colorLeft else colorRight
       val barRect = Rect(left.toFloat(), top, right.toFloat(), bottom)
 
       drawRoundRect(
@@ -80,10 +81,13 @@ fun AudioWaveView(
     drawRoundRect(
       color = Color.Red,
       topLeft = Offset(
-        0F - trackerWidth.dp.toPx() / 2 + progressToWidth,
-        (size.height / 2) - trackerHeight.dp.toPx() / 2
+        min(
+          max(progressToWidth - trackerWidth.dp.toPx() / 2, 0F),
+          size.width - trackerWidth.dp.toPx()
+        ),
+        0F
       ),
-      size = Size(trackerWidth.dp.toPx(), trackerHeight.dp.toPx()),
+      size = Size(trackerWidth.dp.toPx(), size.height),
       cornerRadius = CornerRadius(10F, 10F)
     )
   }

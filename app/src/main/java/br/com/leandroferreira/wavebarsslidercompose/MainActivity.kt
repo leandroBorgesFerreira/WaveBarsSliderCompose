@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
         // A surface container using the 'background' color from the theme
         Surface(
           modifier = Modifier
-            .height(150.dp)
+            .height(50.dp)
             .width(250.dp),
           color = MaterialTheme.colors.background
         ) {
