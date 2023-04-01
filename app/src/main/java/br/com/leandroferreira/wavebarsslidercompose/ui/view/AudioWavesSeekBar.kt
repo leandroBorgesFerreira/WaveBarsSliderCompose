@@ -45,7 +45,7 @@ fun AudioWaveView(
       size = trackerSize,
       cornerRadius = CornerRadius(10F, 10F)
     )
-  } ,
+  },
 ) {
 
   var progress by remember { mutableStateOf(0F) }
@@ -117,6 +117,20 @@ fun DefaultPreview() {
       modifier = Modifier
         .height(70.dp)
         .width(250.dp),
+      trackerDraw = {progressWidth, trackerSize ->
+        drawRoundRect(
+          color = Color.Green,
+          topLeft = Offset(
+            min(
+              max(progressWidth - trackerSize.width / 2, 0F),
+              size.width - trackerSize.width
+            ),
+            0F
+          ),
+          size = trackerSize,
+          cornerRadius = CornerRadius(10F, 10F)
+        )
+      }
     )
   }
 }
