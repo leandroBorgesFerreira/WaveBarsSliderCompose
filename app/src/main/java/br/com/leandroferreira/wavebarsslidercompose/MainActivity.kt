@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
               }
             }, modifier = Modifier
               .height(50.dp)
-              .width(200.dp),
+              .width(200.dp)
+              .padding(horizontal = 30.dp, 6.dp),
           )
         }
       }

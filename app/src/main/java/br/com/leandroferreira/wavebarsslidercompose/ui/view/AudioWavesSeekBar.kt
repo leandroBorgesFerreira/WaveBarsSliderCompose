@@ -32,15 +32,19 @@ fun AudioWaveView(
   colorRight: Color = Color.Gray,
 ) {
 
-  var progress by remember { mutableStateOf(30F) }
-
+  var progress by remember { mutableStateOf(0F) }
+  var seekWidth: Float? = null
   val barSpacing = 0.4
 
   Canvas(modifier = modifier.pointerInput(Unit) {
     detectDragGestures { change, _ ->
-      progress = change.position.x.div(250.dp.toPx()).times(100)
+      progress = change.position.x * 100 / (seekWidth ?: 10F)
     }
   }) {
+    if (seekWidth == null) {
+      seekWidth = size.width
+    }
+
     val totalSpaceWidth = size.width * barSpacing
     val totalBarWidth = size.width - totalSpaceWidth
 
